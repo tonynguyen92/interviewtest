@@ -34,18 +34,17 @@ routerquestion.post('/question/add',function (req, res){
 		if(answer1){
 			Question.All(function (results){
 			Answer.New(answer1,results[results.length-1].question_id,1,correct1);
-			console.log(1);
 			});
 		}
 		if(answer2){
 			Question.All(function (results){
 			Answer.New(answer2,results[results.length-1].question_id,1,correct2);
-			console.log(2);
 			});
 		}
 		if(answer3){
+			Question.All(function (results){
 			Answer.New(answer3,results[results.length-1].question_id,1,correct3);
-			console.log(3);
+			});
 		}
 	
 	res.redirect('/question');

@@ -10,18 +10,9 @@ var con = new Connector();
 		});
 		},
 		New: function(desc, question_id, status_id, correct){
-			con = new Connector();
-			con.db.get('Answer', function(err, results, fields) {
-			var id =1;
-			try {
-				id =  results[results.length-1].answer_id+1;
-			}
-		    catch (e){
-		    }
-			con.db.insert('Answer', { answer_id: id, description: desc, question_id: question_id, status_id: status_id, correct_answer: correct },function(err,info){
+			con.db.insert('Answer', { answer_id: 0, description: desc, question_id: question_id, status_id: status_id, correct_answer: correct },function(err,info){
 				console.log(err);
 			});
-		});
 		},
 		Delete: function(id){
 			con.db.where({answer_id: id}).delete('Answer');
