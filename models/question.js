@@ -14,21 +14,13 @@ var con = new Connector();
 		});
 		},
 		New: function(desc, status_id, category_id, level_id, question_type_id){
-			con.db.get('Question', function(err, results, fields) {
-			var id =1;
-			try {
-				id =  results[results.length-1].question_id+1;
-			}
-		    catch (e){
-		    }
 			var created_date = new Date();
-			console.log(id);
-			con.db.insert('Question', { question_id: id, description: desc, status_id: status_id, category_id: category_id, level_id: level_id, question_type_id: question_type_id },function(err,info){
+			con.db.insert('Question', { question_id: 0, description: desc, status_id: status_id, category_id: category_id, level_id: level_id, question_type_id: question_type_id },function(err,info){
 				console.log(err);
 			});
-		});
 		},
 		Delete: function(id){
+			con.db.where({question_id: id}).delete('Answer');
 			con.db.where({question_id: id}).delete('Question');
 		},
 		Update: function(id, desc, status_id, category_id, level_id, question_type_id){

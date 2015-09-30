@@ -1,6 +1,7 @@
 var express = require('express');
 var routerquestion = express.Router();
 var Question = require('../models/question');
+var Answer = require('../models/answer');
 
 
 routerquestion.get('/question',function (req, res){
@@ -19,10 +20,34 @@ routerquestion.get('/question/new',function (req,res){
 });
 
 routerquestion.post('/question/add',function (req, res){
-	var description = req.body.description;
+	var description  = req.body.description;
 	var questiontype = req.body.questiontype;
-	var status= req.body.status;
+	var status       = req.body.status;
+	var answer1      = req.body.answer1;
+	var answer2      = req.body.answer2;
+	var answer3      = req.body.answer3;
+	var correct1= req.body.correctanswer1;
+	var correct2= req.body.correctanswer2;
+	var correct3= req.body.correctanswer3;
 	Question.New(description,status,1,1,questiontype);
+	
+		if(answer1){
+			Question.All(function (results){
+			Answer.New(answer1,results[results.length-1].question_id,1,correct1);
+			console.log(1);
+			});
+		}
+		if(answer2){
+			Question.All(function (results){
+			Answer.New(answer2,results[results.length-1].question_id,1,correct2);
+			console.log(2);
+			});
+		}
+		if(answer3){
+			Answer.New(answer3,results[results.length-1].question_id,1,correct3);
+			console.log(3);
+		}
+	
 	res.redirect('/question');
 });
 
@@ -40,9 +65,9 @@ routerquestion.get('/question/edit/:id', function (req, res){
 });
 });
 routerquestion.post('/question/update/:id', function (req, res){
-	var description = req.body.description;
+	var description  = req.body.description;
 	var questiontype = req.body.questiontype;
-	var status = req.body.status;
+	var status       = req.body.status;
 	Question.Update(req.params.id,description,status,1,1,questiontype);
 	res.redirect('/question');
 });
