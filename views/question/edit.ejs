@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title><%= title %></title>
+	<link rel="stylesheet" type="text/css" href="../../bootstrap/dist/css/bootstrap.css">
+</head>
+<body>
+<div class="container">
+<h1><%= title %></h1>
+<form role="form" action="/question/update/<%= question[0].question_id %>" method="post">
+ <div class="form-group">
+	 <label for="description">Description:</label>
+	 <textarea class="form-control" rows="5" name="description"><%= question[0].description %></textarea>
+ </div>
+ <div class="form-group">
+ 	<label for="Question Type">Question Type</label>
+ 	<label class="radio-inline"><input type="radio" value="1" <% if(question[0].question_type_id==1){%> checked="true" <% }%> name="questiontype">Single choice</label>
+	<label class="radio-inline"><input type="radio" value="2" <% if(question[0].question_type_id==2){%> checked="true" <% }%> name="questiontype">Multi Choice</label>
+	<label class="radio-inline"><input type="radio" value="3" <% if(question[0].question_type_id==3){%> checked="true" <% }%> name="questiontype">Free Text</label>
+ </div>
+ <div class="form-group">
+ 	<label for="Status">Status</label>
+ 	<label class="radio-inline"><input type="radio" value="1" <% if(question[0].question_type_id==1){%> checked="true" <% }%>  name="status">Active</label>
+	<label class="radio-inline"><input type="radio" value="2" <% if(question[0].question_type_id==2){%> checked="true" <% }%> name="status">Inactive</label>
+ </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+</div>
+</body>
+</html>

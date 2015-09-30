@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title><%= title %></title>
+	<link rel="stylesheet" type="text/css" href="../bootstrap/dist/css/bootstrap.css">
+</head>
+<body>
+<div class="container">
+<h1><%= title %></h1>
+<form action="/question/new" style="margin-bottom: 10px;">
+  <button type="submit" class="btn btn-success">Add Question</button>
+</form>
+<table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>Question</th>
+        <th>Description</th>
+        <th>Question Type</th>
+        <th>Category</th>
+        <th>Level</th>
+        <th>Status</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+    <% for (var i=0; i<questions.length;i++){ %>
+      <tr>
+        <td><%= i+1 %></td>
+        <td class="col-md-6"><%= questions[i].description %></td>
+        <td><%= questions[i].question_type_name %></td>
+        <td><%= questions[i].category_name %></td>
+        <td><%= questions[i].level_name %></td>
+        <td><%= questions[i].status_name %></td>
+        <td>
+        <a href="/question/delete/<%= questions[i].question_id %>" class="btn btn-danger">Delete</a>
+        <a href="/question/edit/<%= questions[i].question_id %>" class="btn btn-info">Edit</a>
+        </td>
+      </tr>
+      <% } %>
+    </tbody>
+  </table>
+
+</div>
+</body>
+</html>

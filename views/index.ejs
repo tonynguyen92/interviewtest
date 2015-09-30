@@ -1,0 +1,18 @@
+<% include ./template/head %>
+<body>
+<div class="container">
+	<h1><%= title %></h1>
+	<ul>
+		<% for (var i =0; i<items.length;i++){ %>
+		<li><%= items[i] %></li>
+		<% } %>
+	</ul>
+	<form action="/add" method="post">
+		<input type ="text" name="newItem">
+		<input type ="submit">
+	</form>
+</div>
+<script src="bootstrap/dist/js/bootstrap.js"></script>
+<script src="jquery/dist/jquery.js"></script>
+</body>
+</html>
