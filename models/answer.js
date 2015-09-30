@@ -2,9 +2,10 @@ var Connector = require('../config_database');
 var con = new Connector();
 	module.exports = {
 
-		All: function(callback) {
+		AnswerByQ: function(question_id, callback) {
 			con.db
 			.order_by('answer_id asc')
+			.where({question_id: question_id})
 			.get('Answer', function(err, results, fields) {
 			return callback(results);
 		});
@@ -17,10 +18,10 @@ var con = new Connector();
 		Delete: function(id){
 			con.db.where({answer_id: id}).delete('Answer');
 		},
-		Update: function(id, desc, status_id, category_id, level_id, question_type_id){
+		Update: function(id, desc, question_id, correct, status_id){
 			var formatedMysqlString = (new Date ((new Date((new Date(new Date())).toISOString() )).getTime() - ((new Date()).getTimezoneOffset()*60000))).toISOString().slice(0, 19).replace('T', ' ');
             console.log( formatedMysqlString );
-			con.db.where({answer_id: id}).update('Answer',{description: desc, status_id: status_id, category_id: category_id, level_id: level_id, question_type_id: question_type_id, updated_at: formatedMysqlString }, function(err,info){
+			con.db.where({answer_id: id}).update('Answer',{description: desc, status_id: status_id, correct_answer: correct, question_id: question_id, updated_at: formatedMysqlString }, function(err,info){
 				console.log(err);
 			});
 		},

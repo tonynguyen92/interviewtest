@@ -23,6 +23,16 @@
  	<label class="radio-inline"><input type="radio" value="1" <% if(question[0].question_type_id==1){%> checked="true" <% }%>  name="status">Active</label>
 	<label class="radio-inline"><input type="radio" value="2" <% if(question[0].question_type_id==2){%> checked="true" <% }%> name="status">Inactive</label>
  </div>
+ <h2>Answer</h2>
+ <% for(var i=0;i<answers.length;i++){ %>
+ <div class="form-group">
+   <label>Answer <%= i+1 %>:</label>
+   <input type="text" class="form-control" value="<%= answers[i].description %>" name="answer<%= i %>">
+   <label for="Status">Correct Answer</label>
+ 	<label class="radio-inline"><input type="radio" <% if(!answers[i].correct_answer){%> checked="true" <%}%> value="0" name="correctanswer<%= i %>">False</label>
+   <label class="radio-inline"><input type="radio" <% if(answers[i].correct_answer){%> checked="true" <%}%> value="1" name="correctanswer<%= i %>">True</label>
+ </div>
+ <% } %>
   <button type="submit" class="btn btn-primary">Submit</button>
 </form>
 </div>

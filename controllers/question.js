@@ -57,10 +57,13 @@ routerquestion.get('/question/delete/:id', function (req, res){
 
 routerquestion.get('/question/edit/:id', function (req, res){
 	Question.Find(req.params.id, function(error,results){
-	res.render('question/edit',{
+	Answer.AnswerByQ(req.params.id, function(answers){
+		res.render('question/edit',{
 		title: "Edit Question",
-		question: results
+		question: results,
+		answers: answers
 	});
+	});	
 });
 });
 routerquestion.post('/question/update/:id', function (req, res){
@@ -68,6 +71,11 @@ routerquestion.post('/question/update/:id', function (req, res){
 	var questiontype = req.body.questiontype;
 	var status       = req.body.status;
 	Question.Update(req.params.id,description,status,1,1,questiontype);
+	Answer.AnswerByQ(req.params.id, function(answers){
+		for (var i=0;i<answers.length;i++){
+    Answer.Update(answers[i].answer_id, eval("req.body.answer"+i), req.params.id, eval("req.body.correctanswer"+i), 1);
+		}
+	});
 	res.redirect('/question');
 });
 module.exports = routerquestion;
