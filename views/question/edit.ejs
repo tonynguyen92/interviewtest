@@ -5,6 +5,7 @@
 	<link rel="stylesheet" type="text/css" href="../../bootstrap/dist/css/bootstrap.css">
 </head>
 <body>
+<% include ../template/header %>
 <div class="container">
 <h1><%= title %></h1>
 <form role="form" action="/question/update/<%= question[0].question_id %>" method="post">

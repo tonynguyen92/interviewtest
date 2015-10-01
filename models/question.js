@@ -24,7 +24,6 @@ var con = new Connector();
 		},
 		Update: function(id, desc, status_id, category_id, level_id, question_type_id){
 			var formatedMysqlString = (new Date ((new Date((new Date(new Date())).toISOString() )).getTime() - ((new Date()).getTimezoneOffset()*60000))).toISOString().slice(0, 19).replace('T', ' ');
-            console.log( formatedMysqlString );
 			con.db.where({question_id: id}).update('Question',{description: desc, status_id: status_id, category_id: category_id, level_id: level_id, question_type_id: question_type_id, updated_at: formatedMysqlString }, function(err,info){
 				console.log(err);
 			});

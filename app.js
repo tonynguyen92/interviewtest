@@ -12,13 +12,16 @@ app.set('views',path.join(__dirname,'views'));
 app.use(bodyParser());
 app.use(express.static(path.join(__dirname,'bower_components')));
 
+//login form
 //define routes
 var router = require('./todos');
 var routerquestion = require('./controllers/question');		
-var routeruser = require('./controllers/user');		
+var routeruser = require('./controllers/user');	
+var routerexam = require('./controllers/exam');		
 app.use(router);
 app.use(routerquestion);
 app.use(routeruser);
+app.use(routerexam);
 //start server
 var port = process.env.PORT||3000;
 app.listen(port,function () {

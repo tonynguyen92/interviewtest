@@ -5,6 +5,7 @@
 	<link rel="stylesheet" type="text/css" href="/bootstrap/dist/css/bootstrap.css">
 </head>
 <body>
+<% include ../template/header %>
 <div class="container">
 <h1><%= title %></h1>
 <form role="form" action="/user/update/<%= user[0].user_id %>" method="post">

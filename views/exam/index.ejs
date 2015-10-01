@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title><%= title %></title>
+	<link rel="stylesheet" type="text/css" href="../bootstrap/dist/css/bootstrap.css">
+</head>
+<body>
+<% include ../template/header %>
+<div class="container">
+<h1><%= title %></h1>
+<form action="/exam/new" style="margin-bottom: 10px;">
+  <button type="submit" class="btn btn-success">Add Exam</button>
+</form>
+<table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>Exam</th>
+        <th>Description</th>
+        <th>Duration</th>
+        <th>Status</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+    <% for (var i=0; i<exams.length;i++){ %>
+      <tr>
+        <td><%= i+1 %></td>
+        <td class="col-md-6"><%= exams[i].description %></td>
+        <td><%= exams[i].duration %></td>
+        <td><%= exams[i].status_name %></td>
+        <td>
+        <a href="/exam/delete/<%= exams[i].exam_id %>" class="btn btn-danger">Delete</a>
+        <a href="/exam/edit/<%= exams[i].exam_id %>" class="btn btn-info">Edit</a>
+        </td>
+      </tr>
+      <% } %>
+    </tbody>
+  </table>
+
+</div>
+</body>
+</html>

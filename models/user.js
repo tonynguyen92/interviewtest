@@ -41,5 +41,18 @@ var con = new Connector();
 			 }
 			else callback(err, null);
 		});
+		},
+		CheckLogin: function(email, password, callback){
+			con.db
+			.where({email: email})
+			.where({password: md5(password)})
+			.get('User', function(err, results, fields){
+				if(results.length>0){
+					callback(null, results);
+				}
+				else{
+					callback("no data", null);
+				}
+			});
 		}
 	};
