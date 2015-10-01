@@ -19,17 +19,17 @@ var con = new Connector();
 			con.db.where({exam_id: id}).delete('QuestionExam');
 			con.db.where({exam_id: id}).delete('Exam');
 		},
-		Update: function(id, desc, question_id, correct, status_id){
+		Update: function(id, desc, duration, status_id){
 			var formatedMysqlString = (new Date ((new Date((new Date(new Date())).toISOString() )).getTime() - ((new Date()).getTimezoneOffset()*60000))).toISOString().slice(0, 19).replace('T', ' ');
-            console.log( formatedMysqlString );
-			con.db.where({answer_id: id}).update('Answer',{description: desc, status_id: status_id, correct_answer: correct, question_id: question_id, updated_at: formatedMysqlString }, function(err,info){
+			con.db.where({exam_id: id}).update('Exam',{description: desc, status_id: status_id, duration: duration, updated_at: formatedMysqlString }, function(err,info){
 				console.log(err);
 			});
 		},
 		Find: function(id, callback){
 			con.db
-			.where({answer_id: id})
-			.get('Answer', function(err, results, fields) {
+			.join('Status','Status.status_id=Exam.status_id')
+			.where({exam_id: id})
+			.get('Exam', function(err, results, fields) {
 			 if (!err) {
 			 	if(!results.length)
 			 	callback(null, "no data");

@@ -35,8 +35,6 @@ routes.post('/checklogin', function (req, res){
 	var email    = req.body.email;
 	var password = req.body.password;
 	var sess     = req.session;
-	console.log(email);
-	console.log(password);
 	User.CheckLogin(email, password, function(messager, result){
 		if(!messager){
 			console.log(messager);

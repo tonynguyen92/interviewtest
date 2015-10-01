@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title><%= title %></title>
+	<link rel="stylesheet" type="text/css" href="/bootstrap/dist/css/bootstrap.css">
+</head>
+<% include ../template/header %>
+<body>
+<div class="container">
+<h1><%= title %></h1>
+<form role="form" action="/exam/update/<%= exam[0].exam_id %>" method="post">
+ <div class="form-group">
+	 <label for="description">Description:</label>
+	 <textarea class="form-control" rows="5" name="description"><%= exam[0].description %></textarea>
+ </div>
+ <div class="form-group">            
+  <label for="description">Duration:</label>           
+    <input type="number" name="duration" value="<%= exam[0].duration %>" min="0" data-bind="value:replyNumber" />
+</div>
+ <div class="form-group">
+ 	<label for="Status">Status</label>
+ 	<label class="radio-inline"><input type="radio" <% if(exam[0].status_id==1){%> checked="true" <% }%> value="1" name="status">Active</label>
+	<label class="radio-inline"><input type="radio" <% if(exam[0].status_id==2){%> checked="true" <% }%> value="2" name="status">Inactive</label>
+ </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+</div>
+</body>
+</html>

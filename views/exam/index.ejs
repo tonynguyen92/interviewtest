@@ -24,7 +24,7 @@
     <tbody>
     <% for (var i=0; i<exams.length;i++){ %>
       <tr>
-        <td><%= i+1 %></td>
+        <td><a href="/exam/show/<%= exams[i].exam_id %>"><%= i+1 %></a></td>
         <td class="col-md-6"><%= exams[i].description %></td>
         <td><%= exams[i].duration %></td>
         <td><%= exams[i].status_name %></td>
