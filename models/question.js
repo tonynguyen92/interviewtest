@@ -14,7 +14,6 @@ var con = new Connector();
 		});
 		},
 		New: function(desc, status_id, category_id, level_id, question_type_id){
-			var created_date = new Date();
 			con.db.insert('Question', { question_id: 0, description: desc, status_id: status_id, category_id: category_id, level_id: level_id, question_type_id: question_type_id },function(err,info){
 				console.log(err);
 			});

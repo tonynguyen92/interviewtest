@@ -15,8 +15,10 @@ app.use(express.static(path.join(__dirname,'bower_components')));
 //define routes
 var router = require('./todos');
 var routerquestion = require('./controllers/question');		
+var routeruser = require('./controllers/user');		
 app.use(router);
 app.use(routerquestion);
+app.use(routeruser);
 //start server
 var port = process.env.PORT||3000;
 app.listen(port,function () {
