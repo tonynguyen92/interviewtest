@@ -37,7 +37,6 @@ routes.post('/checklogin', function (req, res){
 	var sess     = req.session;
 	User.CheckLogin(email, password, function(messager, result){
 		if(!messager){
-			console.log(messager);
 			sess.email   = email;
 			res.redirect(sess.backURL);
 			res.end("done");

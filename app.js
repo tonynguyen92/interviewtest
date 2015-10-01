@@ -29,7 +29,7 @@ app.use(function (req, res, next) {
 		app.use(routerexam);
 	}
 	else{
-		sess.backURL = req.header('Referer') || '/';
+		sess.backURL = req.originalUrl;
 		res.redirect('/login');
 	}
 	next();
