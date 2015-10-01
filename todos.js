@@ -39,7 +39,7 @@ routes.post('/checklogin', function (req, res){
 		if(!messager){
 			console.log(messager);
 			sess.email   = email;
-			res.redirect('/');
+			res.redirect(sess.backURL);
 			res.end("done");
 		}
 		else{
